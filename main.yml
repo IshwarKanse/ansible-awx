@@ -13,6 +13,6 @@
       tower_password: "{{ towerpass }}"
       tower_host: "{{ towerurl }}"
       validate_certs: false
-      workflow_template: {{ workflowvar }}
-      limit: {{ limitvar }}
+      workflow_template: "{{ workflowvar }}"
+      limit: "{{ limitvar }}"
       wait: false
