@@ -1,0 +1,5 @@
+- name: Run some tasks on managed node
+  hosts: all
+
+  tasks:
+  - setup:
