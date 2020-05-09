@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    num_messages: 50
+    make_changed: false
+  tasks:
+    - debug:
+        msg: "This is a debug message: {{ item }}"
+      with_sequence: 'count={{ num_messages }}'
+      changed_when: make_changed | bool
