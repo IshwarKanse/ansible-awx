@@ -1,2 +1,5 @@
-ansible_port: 2222
-all_var: from_all_group
+---
+ansible_user: Administrator
+ansible_connection: winrm
+ansible_winrm_transport: ntlm
+ansible_winrm_server_cert_validation: ignore
