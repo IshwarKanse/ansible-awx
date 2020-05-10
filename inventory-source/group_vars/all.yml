@@ -1,0 +1,2 @@
+ansible_port: 2222
+all_var: from_all_group
