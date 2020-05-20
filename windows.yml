@@ -3,4 +3,4 @@
   
   tasks:
   - name: test task
-    win_shell: sleep 1000
+    win_shell: sleep 10
