@@ -22,7 +22,8 @@ Vagrant.configure("2") do |config|
   config.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/id_rsa']
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
   config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
-
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "/root/.ssh/authorized_keys"
+  config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "/root/.ssh/id_rsa"
 
   config.vm.define "tower1" do |tower1|
     tower1.vm.hostname = "tower1"
