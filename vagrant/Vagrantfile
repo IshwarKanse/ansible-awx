@@ -1,8 +1,23 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+unless Vagrant.has_plugin?("vagrant-hostmanager")
+  puts 'Installing vagrant-hostmanager Plugin...'
+  system('vagrant plugin install vagrant-hostmanager')
+end
+ 
+unless Vagrant.has_plugin?("vagrant-disksize")
+  puts 'Installing vagrant-disksize Plugin...'
+  system('vagrant plugin install vagrant-disksize')
+end
+
 Vagrant.configure("2") do |config|
   config.disksize.size = '50GB'
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
 
 
   config.vm.define "tower1" do |tower1|
@@ -11,8 +26,8 @@ Vagrant.configure("2") do |config|
     tower1.vm.network "private_network", ip: "172.16.33.20"
     for p in [:virtualbox, :libvirt] do
       tower1.vm.provider p do |provider|
-        provider.memory = 4068
-        provider.cpus = 2
+        provider.memory = 8068
+        provider.cpus = 4
       end
     end
   end
@@ -23,8 +38,8 @@ Vagrant.configure("2") do |config|
     tower2.vm.network "private_network", ip: "172.16.33.21"
     for p in [:virtualbox, :libvirt] do
       tower2.vm.provider p do |provider|
-        provider.memory = 4068
-        provider.cpus = 2
+        provider.memory = 8068
+        provider.cpus = 4
       end
     end
   end
@@ -32,11 +47,11 @@ Vagrant.configure("2") do |config|
   config.vm.define "tower3" do |tower3|
     tower3.vm.hostname = "tower3"
     tower3.vm.box = "centos/7"
-    tower3.vm.network "private_network", ip: "172.16.33.23"
+    tower3.vm.network "private_network", ip: "172.16.33.22"
     for p in [:virtualbox, :libvirt] do
       tower3.vm.provider p do |provider|
-        provider.memory = 4068
-        provider.cpus = 2
+        provider.memory = 8068
+        provider.cpus = 4
       end
     end
   end
@@ -44,11 +59,11 @@ Vagrant.configure("2") do |config|
   config.vm.define "towerdb" do |towerdb|
     towerdb.vm.hostname = "towerdb"
     towerdb.vm.box = "centos/7"
-    towerdb.vm.network "private_network", ip: "172.16.33.22"
+    towerdb.vm.network "private_network", ip: "172.16.33.23"
     for p in [:virtualbox, :libvirt] do
       towerdb.vm.provider p do |provider|
-        provider.memory = 4068
-        provider.cpus = 3
+        provider.memory = 8068
+        provider.cpus = 4
       end
     end
   end
@@ -56,13 +71,20 @@ Vagrant.configure("2") do |config|
   config.vm.define "isonode" do |isonode|
     isonode.vm.hostname = "isonode"
     isonode.vm.box = "centos/7"
-    isonode.vm.network "private_network", ip: "172.16.33.22"
+    isonode.vm.network "private_network", ip: "172.16.33.24"
     for p in [:virtualbox, :libvirt] do
       isonode.vm.provider p do |provider|
-        provider.memory = 4068
-        provider.cpus = 3
+        provider.memory = 8068
+        provider.cpus = 4
       end
     end
+  end
+
+  config.vm.provision "shell" do |s|
+    ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
+    s.inline = <<-SHELL
+      echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+    SHELL
   end
 
 end
