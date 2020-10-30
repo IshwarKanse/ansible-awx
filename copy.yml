@@ -11,5 +11,5 @@
       owner: yes
       rsync_opts:
 #      - "--chown=testuser:testuser"
-       - "--usermap=*:testuser"
-       - "--groupmap=*:testuser"
+       - "--usermap=awx:testuser"
+       - "--groupmap=awx:testuser"
