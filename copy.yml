@@ -7,3 +7,5 @@
     synchronize:
       src: myfile.txt
       dest: /tmp/myfile.txt
+      rsync_opts:
+      - "--chown=testuser:testuser"
