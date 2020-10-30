@@ -8,4 +8,5 @@
       src: myfile.txt
       dest: /tmp/myfile.txt
       rsync_opts:
-      - "--chown=testuser:testuser"
+#      - "--chown=testuser:testuser"
+       - "--usermap=testuser:testuser"
