@@ -7,9 +7,9 @@
     synchronize:
       src: myfile.txt
       dest: /tmp/myfile.txt
-      group: yes
-      owner: yes
+#      group: yes
+#      owner: yes
       rsync_opts:
 #      - "--chown=testuser:testuser"
-       - "--usermap=awx:testuser"
-       - "--groupmap=awx:testuser"
+       - "--usermap=*:testuser"
+       - "--groupmap=*:testuser"
