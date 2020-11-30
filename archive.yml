@@ -1,0 +1,15 @@
+- name: test archive
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: copy files to tmp
+    copy:
+      src: files/test
+      dest: /tmp/
+
+  - name: test archive
+    archive:
+      path: /tmp/test/
+      dest: /tmp/test/ansible-tower.zip
+      format: zip
