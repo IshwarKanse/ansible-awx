@@ -2,6 +2,9 @@
   hosts: localhost
   connection: local
 
+  collections:
+  - community.general
+
   tasks:
   - name: copy files to tmp
     copy:
@@ -9,7 +12,7 @@
       dest: /tmp/
 
   - name: test archive
-    archive:
+    community.general.archive:
       path: /tmp/test/
       dest: /tmp/test/ansible-tower.zip
       format: zip
