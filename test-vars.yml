@@ -32,3 +32,6 @@
   - name: Debug key
     debug: 
       msg="{{ lookup('env','JH1_SSH_PRIVATE_KEY') }}" 
+
+  - pause:
+    minutes: 5
