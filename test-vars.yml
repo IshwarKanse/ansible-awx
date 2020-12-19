@@ -34,4 +34,4 @@
       msg="{{ lookup('env','JH1_SSH_PRIVATE_KEY') }}" 
 
   - pause:
-    minutes: 5
+      minutes: 5
