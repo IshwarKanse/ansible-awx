@@ -28,4 +28,7 @@
  
     debug: 
       msg: "{{ msg.split('\n') }}"       
-    tags: debug_info
+
+  - name: Debug key
+    debug: 
+      msg="{{ lookup('env','JH1_SSH_PRIVATE_KEY') }}" 
