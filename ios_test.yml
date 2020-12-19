@@ -1,0 +1,8 @@
+- name: test ios
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: run show version on remote devices
+    ios_command:
+      commands: show version
