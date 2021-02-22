@@ -7,3 +7,5 @@
   - shell: "whoami"
 
   - shell: "hostname"
+
+  - shell: "hostname"
