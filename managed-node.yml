@@ -7,3 +7,6 @@
   - shell: "whoami"
 
   - shell: "hostname"
+
+  - pause:
+      minutes: 5
