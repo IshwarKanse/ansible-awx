@@ -1,6 +1,10 @@
 - name: Run some tasks on managed node
   hosts: all
 
+    machine:
+    username: '{{ ansible_user }}'
+    pvkey: '{{ ansible_ssh_private_key_file }}'
+
   tasks:
   - setup:
 
@@ -8,5 +12,5 @@
 
   - shell: "hostname"
 
-  - pause:
-      minutes: 5
+  - debug:
+    var: pvkey
